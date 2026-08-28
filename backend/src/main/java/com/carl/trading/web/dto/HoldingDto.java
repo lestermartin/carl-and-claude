@@ -12,5 +12,6 @@ public record HoldingDto(
         BigDecimal marketValueUsd,
         BigDecimal costBasisUsd,
         BigDecimal unrealizedPlUsd,
-        BigDecimal unrealizedPlPct) {
+        BigDecimal unrealizedPlPct,
+        boolean exchangeOpen) {
 }

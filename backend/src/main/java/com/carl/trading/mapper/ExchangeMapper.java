@@ -10,15 +10,18 @@ import java.util.List;
 @Mapper
 public interface ExchangeMapper {
 
-    @Select("SELECT id, code, name, enabled FROM exchanges WHERE enabled = TRUE ORDER BY code")
+    String COLS = "id, code, name, enabled, time_zone, open_local, close_local, open_days";
+
+    @Select("SELECT " + COLS + " FROM exchanges WHERE enabled = TRUE ORDER BY code")
     List<Exchange> findEnabled();
 
-    @Select("SELECT id, code, name, enabled FROM exchanges WHERE code = #{code}")
+    @Select("SELECT " + COLS + " FROM exchanges WHERE code = #{code}")
     Exchange findByCode(String code);
 
     @Select("SELECT count(*) FROM exchanges")
     long count();
 
-    @Insert("INSERT INTO exchanges(code, name, enabled) VALUES(#{code}, #{name}, #{enabled})")
+    @Insert("INSERT INTO exchanges(code, name, enabled, time_zone, open_local, close_local, open_days) "
+            + "VALUES(#{code}, #{name}, #{enabled}, #{timeZone}, #{openLocal}, #{closeLocal}, #{openDays})")
     void insert(Exchange exchange);
 }

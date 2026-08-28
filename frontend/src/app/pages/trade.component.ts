@@ -18,7 +18,9 @@ import { Exchange, OrderResult, OrderType, Security, Side } from '../core/models
           <label for="exchange">Exchange</label>
           <select id="exchange" name="exchange" [(ngModel)]="exchange" (ngModelChange)="onExchangeChange()">
             @for (ex of exchanges(); track ex.code) {
-              <option [value]="ex.code">{{ ex.name }}</option>
+              <option [value]="ex.code" [disabled]="!ex.open">
+                {{ ex.name }}{{ ex.open ? '' : ' — closed' }}
+              </option>
             }
           </select>
         </div>
@@ -31,6 +33,10 @@ import { Exchange, OrderResult, OrderType, Security, Side } from '../core/models
           </select>
         </div>
       </div>
+
+      @if (exchanges().length && !exchangeOpen()) {
+        <p class="error">{{ selectedExchange()?.name }} is currently closed for trading — pick an open exchange.</p>
+      }
 
       @if (selected(); as s) {
         <p class="muted">Current price: <strong>{{ s.priceUsd | currency: 'USD' }}</strong> (USD)</p>
@@ -71,7 +77,7 @@ import { Exchange, OrderResult, OrderType, Security, Side } from '../core/models
         <p class="error">{{ error() }}</p>
       }
       <div>
-        <button type="submit" [disabled]="submitting() || !symbol || quantity < 1">
+        <button type="submit" [disabled]="submitting() || !symbol || quantity < 1 || !exchangeOpen()">
           {{ submitting() ? 'Submitting…' : 'Submit order' }}
         </button>
       </div>
@@ -131,6 +137,15 @@ export class TradeComponent implements OnInit {
   readonly error = signal<string | null>(null);
   readonly result = signal<OrderResult | null>(null);
 
+  selectedExchange(): Exchange | null {
+    return this.exchanges().find((ex) => ex.code === this.exchange) ?? null;
+  }
+
+  exchangeOpen(): boolean {
+    const ex = this.selectedExchange();
+    return ex ? ex.open : true;
+  }
+
   selected(): Security | null {
     return this.securities().find((s) => s.symbol === this.symbol) ?? null;
   }
@@ -160,8 +175,11 @@ export class TradeComponent implements OnInit {
       if (list.length === 0) {
         return;
       }
-      const match = requestedExchange && list.some((ex) => ex.code === requestedExchange);
-      this.exchange = match ? (requestedExchange as string) : list[0].code;
+      const firstOpen = list.find((ex) => ex.open);
+      const requestedIsOpen = list.some((ex) => ex.code === requestedExchange && ex.open);
+      this.exchange = requestedIsOpen
+        ? (requestedExchange as string)
+        : (firstOpen?.code ?? list[0].code);
       this.onExchangeChange();
     });
   }
@@ -184,7 +202,7 @@ export class TradeComponent implements OnInit {
   }
 
   submit(): void {
-    if (!this.symbol || this.quantity < 1) {
+    if (!this.symbol || this.quantity < 1 || !this.exchangeOpen()) {
       return;
     }
     this.submitting.set(true);

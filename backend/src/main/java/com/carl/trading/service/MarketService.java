@@ -16,14 +16,19 @@ public class MarketService {
 
     private final ExchangeMapper exchangeMapper;
     private final SecurityMapper securityMapper;
+    private final ExchangeCalendar exchangeCalendar;
 
-    public MarketService(ExchangeMapper exchangeMapper, SecurityMapper securityMapper) {
+    public MarketService(ExchangeMapper exchangeMapper, SecurityMapper securityMapper,
+                         ExchangeCalendar exchangeCalendar) {
         this.exchangeMapper = exchangeMapper;
         this.securityMapper = securityMapper;
+        this.exchangeCalendar = exchangeCalendar;
     }
 
     public List<ExchangeDto> enabledExchanges() {
-        return exchangeMapper.findEnabled().stream().map(ExchangeDto::from).toList();
+        return exchangeMapper.findEnabled().stream()
+                .map(e -> ExchangeDto.from(e, exchangeCalendar.isOpenNow(e)))
+                .toList();
     }
 
     public List<SecurityDto> securitiesForExchange(String exchangeCode) {

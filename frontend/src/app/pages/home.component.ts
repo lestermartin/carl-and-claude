@@ -53,7 +53,6 @@ import { Portfolio } from '../core/models';
                   <th>Price</th>
                   <th>Market value</th>
                   <th>Unrealized P/L</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -61,9 +60,44 @@ import { Portfolio } from '../core/models';
                   <tr>
                     <td class="left">
                       <strong>{{ h.symbol }}</strong>
+                      @if (h.exchangeOpen) {
+                        <a
+                          class="sell-tag"
+                          routerLink="/trade"
+                          [queryParams]="{
+                            symbol: h.symbol,
+                            exchange: h.exchangeCode,
+                            side: 'SELL',
+                            orderType: 'MARKET',
+                            quantity: h.quantity
+                          }"
+                          [title]="'Sell ' + h.symbol"
+                        >
+                          <svg class="sell-tag__img" viewBox="0 0 30 12" width="30" height="12" role="img" aria-label="sell">
+                            <rect x="0.5" y="0.5" width="29" height="11" rx="5.5" />
+                            <text x="15" y="8.7" text-anchor="middle">sell</text>
+                          </svg>
+                        </a>
+                      } @else {
+                        <span class="sell-tag disabled" [title]="h.exchangeCode + ' is closed for trading'">
+                          <svg class="sell-tag__img" viewBox="0 0 30 12" width="30" height="12" role="img" aria-label="sell">
+                            <rect x="0.5" y="0.5" width="29" height="11" rx="5.5" />
+                            <text x="15" y="8.7" text-anchor="middle">sell</text>
+                          </svg>
+                        </span>
+                      }
                       <div class="muted" style="font-weight: 400">{{ h.companyName }}</div>
                     </td>
-                    <td class="left">{{ h.exchangeCode }}</td>
+                    <td class="left">
+                      {{ h.exchangeCode }}
+                      <span
+                        class="mkt-dot"
+                        [class.open]="h.exchangeOpen"
+                        [class.closed]="!h.exchangeOpen"
+                        [title]="h.exchangeCode + (h.exchangeOpen ? ' is open for trading' : ' is closed')"
+                        >{{ h.exchangeOpen ? '●' : '○' }}</span
+                      >
+                    </td>
                     <td>{{ h.quantity | number }}</td>
                     <td>{{ h.avgCostBasisUsd | currency: 'USD' }}</td>
                     <td>{{ h.priceUsd | currency: 'USD' }}</td>
@@ -71,20 +105,6 @@ import { Portfolio } from '../core/models';
                     <td [class.pos]="h.unrealizedPlUsd >= 0" [class.neg]="h.unrealizedPlUsd < 0">
                       {{ h.unrealizedPlUsd | currency: 'USD' }}
                       <span class="muted">({{ h.unrealizedPlPct | number: '1.2-2' }}%)</span>
-                    </td>
-                    <td>
-                      <a
-                        class="btn"
-                        routerLink="/trade"
-                        [queryParams]="{
-                          symbol: h.symbol,
-                          exchange: h.exchangeCode,
-                          side: 'SELL',
-                          orderType: 'MARKET',
-                          quantity: h.quantity
-                        }"
-                        >Sell</a
-                      >
                     </td>
                   </tr>
                 }

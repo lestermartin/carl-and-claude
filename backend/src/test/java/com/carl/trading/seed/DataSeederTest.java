@@ -70,6 +70,13 @@ class DataSeederTest {
         assertThat(exchangeMapper.findEnabled()).extracting("code")
                 .containsExactlyInAnyOrder("NASDAQ", "NYSE", "SSE", "LSE");
         assertThat(securityMapper.count()).isEqualTo(175);
+
+        assertThat(exchangeMapper.findEnabled()).allSatisfy(ex -> {
+            assertThat(ex.timeZone()).isNotBlank();
+            assertThat(ex.openLocal()).isNotNull();
+            assertThat(ex.closeLocal()).isNotNull();
+            assertThat(ex.openDays()).isEqualTo("MON,TUE,WED,THU,FRI");
+        });
     }
 
     @Test

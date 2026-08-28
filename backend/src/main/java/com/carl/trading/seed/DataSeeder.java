@@ -26,6 +26,7 @@ import java.io.UncheckedIOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +52,16 @@ public class DataSeeder implements ApplicationRunner {
     private static final int MAX_SPEND = 40_000;
     private static final int HISTORY_DAYS = 3 * 365;
 
+    private static final String WEEKDAYS = "MON,TUE,WED,THU,FRI";
     private static final List<Exchange> EXCHANGES = List.of(
-            new Exchange(null, "NASDAQ", "Nasdaq Stock Market", true),
-            new Exchange(null, "NYSE", "New York Stock Exchange", true),
-            new Exchange(null, "SSE", "Shanghai Stock Exchange", true),
-            new Exchange(null, "LSE", "London Stock Exchange", true));
+            new Exchange(null, "NASDAQ", "Nasdaq Stock Market", true,
+                    "America/New_York", LocalTime.of(9, 30), LocalTime.of(16, 0), WEEKDAYS),
+            new Exchange(null, "NYSE", "New York Stock Exchange", true,
+                    "America/New_York", LocalTime.of(9, 30), LocalTime.of(16, 0), WEEKDAYS),
+            new Exchange(null, "SSE", "Shanghai Stock Exchange", true,
+                    "Asia/Shanghai", LocalTime.of(9, 30), LocalTime.of(15, 0), WEEKDAYS),
+            new Exchange(null, "LSE", "London Stock Exchange", true,
+                    "Europe/London", LocalTime.of(8, 0), LocalTime.of(16, 30), WEEKDAYS));
 
     private final ExchangeMapper exchangeMapper;
     private final SecurityMapper securityMapper;

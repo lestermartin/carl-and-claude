@@ -22,6 +22,11 @@ export type UpdateProfile = Omit<Profile, 'username' | 'cashBalanceUsd'>;
 export interface Exchange {
   code: string;
   name: string;
+  timeZone: string | null;
+  openLocal: string | null;
+  closeLocal: string | null;
+  openDays: string | null;
+  open: boolean;
 }
 
 export interface Security {
@@ -43,6 +48,7 @@ export interface Holding {
   costBasisUsd: number;
   unrealizedPlUsd: number;
   unrealizedPlPct: number;
+  exchangeOpen: boolean;
 }
 
 export interface Portfolio {

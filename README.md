@@ -66,8 +66,8 @@ There is no sign-up flow — the nine accounts are the whole user list for this 
 | Page | Notes |
 |------|-------|
 | **Login / Logout** | JWT is stored in the browser; logout just discards it. |
-| **Home** | Holdings summary: quantity, average cost, current price, market value, unrealized P/L, plus cash and total account value. Each row has a **Sell** button that opens the Trade page pre-filled for that position. |
-| **Trade** | Buy/sell, `MARKET` or `LIMIT`. Pick an exchange, then a security from its list. |
+| **Home** | Holdings summary: quantity, average cost, current price, market value, unrealized P/L, plus cash and total account value. A ●/○ dot after each exchange name shows whether it is **open** or **closed** right now; a small **sell** tag next to each symbol opens the Trade page pre-filled for that position, and is greyed out / inert while that exchange is closed. |
+| **Trade** | Buy/sell, `MARKET` or `LIMIT`. Pick an exchange, then a security from its list. Closed exchanges are shown but not selectable, and the order can't be submitted while the chosen exchange is closed. |
 | **Transactions** | Full log, newest first, including rejected orders. |
 | **Profile** | Edit any field **except** username and password. |
 
@@ -85,6 +85,13 @@ There is no sign-up flow — the nine accounts are the whole user list for this 
 Exchanges are a configurable table, seeded with **Nasdaq, NYSE, Shanghai (SSE), and London
 (LSE)**. For each, `backend/src/main/resources/marketdata/*.csv` holds a representative list
 of well-known constituents (~40 each) with a recent **USD** price snapshot.
+
+Each exchange row also carries a **regular trading session** — `time_zone`, `open_local`,
+`close_local`, `open_days` (see `V2__exchange_hours.sql`). `ExchangeCalendar` uses it to
+decide whether an exchange is open *now* (`GET /api/exchanges` returns `open`, and each
+holding in `GET /api/portfolio` returns `exchangeOpen`). A single continuous session is
+modelled per day — intraday breaks (e.g. the SSE lunch break), market holidays, and
+half-days are not.
 
 **Single-currency simplification:** every security stores a pre-converted USD price, so
 Shanghai/London stocks are bought with the USD cash balance and there is no FX handling.
@@ -114,7 +121,7 @@ You need JDK 21, Maven, Node 20, and a local PostgreSQL matching `.env`.
 ```bash
 cd backend
 ./mvnw spring-boot:run        # http://localhost:8080  (expects postgres on localhost:5432)
-./mvnw test                   # unit tests (OrderService, PortfolioService, DataSeeder)
+./mvnw test                   # unit tests (OrderService, PortfolioService, ExchangeCalendar, DataSeeder)
 ```
 
 **Frontend**
@@ -136,12 +143,12 @@ npm start                     # http://localhost:4200, proxies /api to http://lo
 backend/    Spring Boot API
   src/main/java/com/carl/trading/
     web/         REST controllers + DTOs
-    service/     AuthService, ProfileService, PortfolioService, OrderService, MarketService
+    service/     AuthService, ProfileService, PortfolioService, OrderService, MarketService, ExchangeCalendar
     mapper/      MyBatis mapper interfaces
     seed/        DataSeeder (reference data + demo customers)
     security/    JWT filter + helpers
   src/main/resources/
-    db/migration/V1__init.sql     Flyway schema
+    db/migration/*.sql            Flyway schema (V1 tables, V2 exchange hours)
     mybatis/*.xml                 join queries
     marketdata/*.csv              seeded securities + prices
     seed/*                        name / street / city lists
