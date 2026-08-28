@@ -1,6 +1,8 @@
 # carl-and-claude
 
-Carl needs brokerage self-service tools and he turns to Claude for help.
+Carl needs brokerage self-service tools. He is NOT a programmer, but he heard about "vibe coding" with Claude and he gave it a go!
+
+![Carl](https://github.com/lestermartin/carl-and-claude/blob/main/CarlWithCup.jpg?raw=true "Carl")
 
 This repo holds a small, self-contained **self-service brokerage demo application**:
 
