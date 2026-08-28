@@ -1,0 +1,46 @@
+symbol,company_name,currency_native,snapshot_price_usd
+BRKB,Berkshire Hathaway Inc. Class B,USD,460.00
+JPM,JPMorgan Chase & Co.,USD,220.00
+V,Visa Inc.,USD,280.00
+WMT,Walmart Inc.,USD,80.00
+MA,Mastercard Incorporated,USD,480.00
+UNH,UnitedHealth Group Incorporated,USD,500.00
+XOM,Exxon Mobil Corporation,USD,115.00
+JNJ,Johnson & Johnson,USD,160.00
+PG,Procter & Gamble Company,USD,170.00
+HD,Home Depot Inc.,USD,390.00
+CVX,Chevron Corporation,USD,145.00
+KO,Coca-Cola Company,USD,70.00
+BAC,Bank of America Corporation,USD,42.00
+MRK,Merck & Co. Inc.,USD,115.00
+ABBV,AbbVie Inc.,USD,190.00
+CRM,Salesforce Inc.,USD,260.00
+ORCL,Oracle Corporation,USD,170.00
+ACN,Accenture plc,USD,340.00
+MCD,McDonald's Corporation,USD,290.00
+LLY,Eli Lilly and Company,USD,900.00
+PFE,Pfizer Inc.,USD,28.00
+TMO,Thermo Fisher Scientific Inc.,USD,580.00
+ABT,Abbott Laboratories,USD,115.00
+DIS,Walt Disney Company,USD,95.00
+WFC,Wells Fargo & Company,USD,60.00
+DHR,Danaher Corporation,USD,250.00
+VZ,Verizon Communications Inc.,USD,42.00
+NKE,NIKE Inc.,USD,80.00
+PM,Philip Morris International Inc.,USD,115.00
+CAT,Caterpillar Inc.,USD,350.00
+GS,Goldman Sachs Group Inc.,USD,500.00
+MS,Morgan Stanley,USD,105.00
+RTX,RTX Corporation,USD,120.00
+LOW,Lowe's Companies Inc.,USD,250.00
+IBM,International Business Machines Corporation,USD,210.00
+GE,GE Aerospace,USD,175.00
+BA,Boeing Company,USD,175.00
+SPGI,S&P Global Inc.,USD,520.00
+AXP,American Express Company,USD,260.00
+BLK,BlackRock Inc.,USD,900.00
+C,Citigroup Inc.,USD,65.00
+T,AT&T Inc.,USD,20.00
+UNP,Union Pacific Corporation,USD,240.00
+UPS,United Parcel Service Inc.,USD,130.00
+DE,Deere & Company,USD,400.00

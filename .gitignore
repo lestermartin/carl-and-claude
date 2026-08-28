@@ -15,6 +15,15 @@
 # Environment files
 /.env
 
+# Backend (Java / Maven)
+/backend/target/
+backend/target/
+*.class
+
+# Local env
+.env
+
+
 # Angular CLI and build artefacts
 /.angular-cli.json
 /.ng/

@@ -1,0 +1,46 @@
+symbol,company_name,currency_native,snapshot_price_usd
+AAPL,Apple Inc.,USD,230.00
+MSFT,Microsoft Corporation,USD,420.00
+NVDA,NVIDIA Corporation,USD,130.00
+AMZN,Amazon.com Inc.,USD,185.00
+GOOGL,Alphabet Inc. Class A,USD,175.00
+META,Meta Platforms Inc.,USD,560.00
+TSLA,Tesla Inc.,USD,245.00
+AVGO,Broadcom Inc.,USD,165.00
+COST,Costco Wholesale Corporation,USD,880.00
+NFLX,Netflix Inc.,USD,690.00
+AMD,Advanced Micro Devices Inc.,USD,155.00
+PEP,PepsiCo Inc.,USD,170.00
+ADBE,Adobe Inc.,USD,550.00
+CSCO,Cisco Systems Inc.,USD,50.00
+INTC,Intel Corporation,USD,30.00
+QCOM,QUALCOMM Incorporated,USD,170.00
+TXN,Texas Instruments Incorporated,USD,200.00
+AMAT,Applied Materials Inc.,USD,200.00
+INTU,Intuit Inc.,USD,640.00
+AMGN,Amgen Inc.,USD,320.00
+HON,Honeywell International Inc.,USD,205.00
+BKNG,Booking Holdings Inc.,USD,3900.00
+ISRG,Intuitive Surgical Inc.,USD,470.00
+VRTX,Vertex Pharmaceuticals Incorporated,USD,480.00
+REGN,Regeneron Pharmaceuticals Inc.,USD,1050.00
+GILD,Gilead Sciences Inc.,USD,80.00
+MU,Micron Technology Inc.,USD,100.00
+LRCX,Lam Research Corporation,USD,90.00
+ADI,Analog Devices Inc.,USD,230.00
+PANW,Palo Alto Networks Inc.,USD,350.00
+KLAC,KLA Corporation,USD,750.00
+SNPS,Synopsys Inc.,USD,550.00
+CDNS,Cadence Design Systems Inc.,USD,300.00
+MRVL,Marvell Technology Inc.,USD,75.00
+ORLY,O'Reilly Automotive Inc.,USD,1150.00
+CSX,CSX Corporation,USD,33.00
+MELI,MercadoLibre Inc.,USD,2000.00
+PYPL,PayPal Holdings Inc.,USD,70.00
+ABNB,Airbnb Inc.,USD,130.00
+FTNT,Fortinet Inc.,USD,75.00
+ADP,Automatic Data Processing Inc.,USD,270.00
+CRWD,CrowdStrike Holdings Inc.,USD,320.00
+NXPI,NXP Semiconductors N.V.,USD,250.00
+MNST,Monster Beverage Corporation,USD,50.00
+WDAY,Workday Inc.,USD,250.00

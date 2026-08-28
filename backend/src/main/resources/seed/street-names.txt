@@ -1,0 +1,31 @@
+# Demo street names (number is generated at runtime)
+Main Street
+Oak Avenue
+Maple Drive
+Cedar Lane
+Pine Street
+Elm Street
+Washington Avenue
+Lake View Road
+Sunset Boulevard
+Hillcrest Drive
+Park Avenue
+River Road
+Highland Avenue
+Franklin Street
+Church Street
+Meadow Lane
+Willow Way
+Birch Court
+Spruce Street
+Ridgewood Drive
+Chestnut Street
+Broadway
+Lincoln Avenue
+Jefferson Street
+Madison Court
+Prospect Avenue
+Brookside Drive
+Valley Road
+Forest Lane
+Aspen Circle

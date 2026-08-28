@@ -1,0 +1,45 @@
+symbol,company_name,currency_native,snapshot_price_usd
+SHEL,Shell plc,GBP,33.00
+AZN,AstraZeneca plc,GBP,140.00
+HSBA,HSBC Holdings plc,GBP,9.00
+ULVR,Unilever plc,GBP,60.00
+BP,BP plc,GBP,5.50
+RIO,Rio Tinto plc,GBP,65.00
+GSK,GSK plc,GBP,20.00
+DGE,Diageo plc,GBP,32.00
+GLEN,Glencore plc,GBP,5.50
+BATS,British American Tobacco plc,GBP,38.00
+REL,RELX plc,GBP,45.00
+LSEG,London Stock Exchange Group plc,GBP,120.00
+NG,National Grid plc,GBP,13.00
+VOD,Vodafone Group plc,GBP,0.90
+BARC,Barclays plc,GBP,2.70
+LLOY,Lloyds Banking Group plc,GBP,0.70
+PRU,Prudential plc,GBP,9.00
+CPG,Compass Group plc,GBP,30.00
+RKT,Reckitt Benckiser Group plc,GBP,58.00
+AAL,Anglo American plc,GBP,30.00
+BAES,BAE Systems plc,GBP,17.00
+NWG,NatWest Group plc,GBP,4.50
+TSCO,Tesco plc,GBP,4.00
+IMB,Imperial Brands plc,GBP,28.00
+HLN,Haleon plc,GBP,4.50
+EXPN,Experian plc,GBP,48.00
+III,3i Group plc,GBP,40.00
+ADM,Admiral Group plc,GBP,35.00
+STAN,Standard Chartered plc,GBP,10.00
+ANTO,Antofagasta plc,GBP,24.00
+WTB,Whitbread plc,GBP,38.00
+SGRO,Segro plc,GBP,10.00
+BNZL,Bunzl plc,GBP,40.00
+SN,Smith & Nephew plc,GBP,14.00
+CNA,Centrica plc,GBP,1.70
+AVVA,Aviva plc,GBP,6.00
+LGEN,Legal & General Group plc,GBP,3.00
+MNG,M&G plc,GBP,2.60
+FRES,Fresnillo plc,GBP,8.00
+KGF,Kingfisher plc,GBP,3.50
+ITRK,Intertek Group plc,GBP,65.00
+HLMA,Halma plc,GBP,35.00
+WEIR,Weir Group plc,GBP,28.00
+RTO,Rentokil Initial plc,GBP,5.00

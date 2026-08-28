@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carl.trading.mapper.TransactionMapper">
+
+    <select id="findByCustomer" parameterType="long"
+            resultType="com.carl.trading.model.TransactionRecord">
+        SELECT t.id                 AS id,
+               t.customer_id         AS customer_id,
+               t.security_id         AS security_id,
+               s.symbol              AS symbol,
+               e.code                AS exchange_code,
+               t.side                AS side,
+               t.order_type          AS order_type,
+               t.status              AS status,
+               t.quantity            AS quantity,
+               t.limit_price_usd     AS limit_price_usd,
+               t.executed_price_usd  AS executed_price_usd,
+               t.cash_delta_usd      AS cash_delta_usd,
+               t.reason              AS reason,
+               t.created_at          AS created_at
+        FROM transactions t
+                 JOIN securities s ON s.id = t.security_id
+                 JOIN exchanges e ON e.id = s.exchange_id
+        WHERE t.customer_id = #{customerId}
+        ORDER BY t.created_at DESC, t.id DESC
+    </select>
+</mapper>
