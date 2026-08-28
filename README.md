@@ -66,7 +66,7 @@ There is no sign-up flow — the nine accounts are the whole user list for this 
 | Page | Notes |
 |------|-------|
 | **Login / Logout** | JWT is stored in the browser; logout just discards it. |
-| **Home** | Holdings summary: quantity, average cost, current price, market value, unrealized P/L, plus cash and total account value. |
+| **Home** | Holdings summary: quantity, average cost, current price, market value, unrealized P/L, plus cash and total account value. Each row has a **Sell** button that opens the Trade page pre-filled for that position. |
 | **Trade** | Buy/sell, `MARKET` or `LIMIT`. Pick an exchange, then a security from its list. |
 | **Transactions** | Full log, newest first, including rejected orders. |
 | **Profile** | Edit any field **except** username and password. |

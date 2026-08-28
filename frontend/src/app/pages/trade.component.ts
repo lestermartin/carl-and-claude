@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../core/api.service';
 import { Exchange, OrderResult, OrderType, Security, Side } from '../core/models';
 
@@ -112,6 +112,7 @@ import { Exchange, OrderResult, OrderType, Security, Side } from '../core/models
 })
 export class TradeComponent implements OnInit {
   private readonly api = inject(ApiService);
+  private readonly route = inject(ActivatedRoute);
 
   readonly exchanges = signal<Exchange[]>([]);
   readonly securities = signal<Security[]>([]);
@@ -122,6 +123,9 @@ export class TradeComponent implements OnInit {
   orderType: OrderType = 'MARKET';
   quantity = 1;
   limitPrice: number | null = null;
+
+  /** Symbol requested via query params (e.g. the "Sell" button on Home), applied once its list loads. */
+  private pendingSymbol: string | null = null;
 
   readonly submitting = signal(false);
   readonly error = signal<string | null>(null);
@@ -137,12 +141,28 @@ export class TradeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const params = this.route.snapshot.queryParamMap;
+    const requestedExchange = params.get('exchange');
+    this.pendingSymbol = params.get('symbol');
+    if (params.get('side') === 'SELL' || params.get('side') === 'BUY') {
+      this.side = params.get('side') as Side;
+    }
+    if (params.get('orderType') === 'MARKET' || params.get('orderType') === 'LIMIT') {
+      this.orderType = params.get('orderType') as OrderType;
+    }
+    const requestedQty = Number(params.get('quantity'));
+    if (Number.isFinite(requestedQty) && requestedQty >= 1) {
+      this.quantity = Math.trunc(requestedQty);
+    }
+
     this.api.getExchanges().subscribe((list) => {
       this.exchanges.set(list);
-      if (list.length > 0) {
-        this.exchange = list[0].code;
-        this.onExchangeChange();
+      if (list.length === 0) {
+        return;
       }
+      const match = requestedExchange && list.some((ex) => ex.code === requestedExchange);
+      this.exchange = match ? (requestedExchange as string) : list[0].code;
+      this.onExchangeChange();
     });
   }
 
@@ -154,9 +174,12 @@ export class TradeComponent implements OnInit {
     }
     this.api.getSecurities(this.exchange).subscribe((list) => {
       this.securities.set(list);
-      if (list.length > 0) {
-        this.symbol = list[0].symbol;
+      if (list.length === 0) {
+        return;
       }
+      const wanted = this.pendingSymbol && list.some((s) => s.symbol === this.pendingSymbol);
+      this.symbol = wanted ? (this.pendingSymbol as string) : list[0].symbol;
+      this.pendingSymbol = null;
     });
   }
 

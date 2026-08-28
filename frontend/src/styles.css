@@ -108,6 +108,24 @@ button.secondary {
   color: var(--text);
 }
 
+a.btn {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 button:disabled {
   opacity: 0.55;
   cursor: not-allowed;

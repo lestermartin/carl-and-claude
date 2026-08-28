@@ -53,6 +53,7 @@ import { Portfolio } from '../core/models';
                   <th>Price</th>
                   <th>Market value</th>
                   <th>Unrealized P/L</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -70,6 +71,20 @@ import { Portfolio } from '../core/models';
                     <td [class.pos]="h.unrealizedPlUsd >= 0" [class.neg]="h.unrealizedPlUsd < 0">
                       {{ h.unrealizedPlUsd | currency: 'USD' }}
                       <span class="muted">({{ h.unrealizedPlPct | number: '1.2-2' }}%)</span>
+                    </td>
+                    <td>
+                      <a
+                        class="btn"
+                        routerLink="/trade"
+                        [queryParams]="{
+                          symbol: h.symbol,
+                          exchange: h.exchangeCode,
+                          side: 'SELL',
+                          orderType: 'MARKET',
+                          quantity: h.quantity
+                        }"
+                        >Sell</a
+                      >
                     </td>
                   </tr>
                 }
