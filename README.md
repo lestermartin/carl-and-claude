@@ -1,6 +1,6 @@
 # carl-and-claude
 
-Carl needs brokerage self-service tools. He is NOT a programmer, but he heard about "vibe coding" with Claude and he gave it a go!
+Carl needs brokerage self-service tools. He is NOT a programmer, but he heard about "vibe coding" with Claude and he gave it a go! Read more about their journey [here](./HowItStarted.md).
 
 ![Carl](https://github.com/lestermartin/carl-and-claude/blob/main/CarlWithCup.jpg?raw=true "Carl")
 
